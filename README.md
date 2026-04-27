@@ -1,59 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Salon Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive Laravel-based web application for managing customers, salon/nail services, appointments, and payments.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Authentication** - Laravel Breeze login/logout with session handling
+- **Service Management** - Full CRUD for salon/nail services with pricing
+- **Appointment Booking** - Create, view, edit, and cancel bookings
+- **Payment Processing** - Record payments with multiple methods (cash, card, transfer, e-wallet)
+- **Dashboard** - Real-time statistics and recent activity
+- **Responsive UI** - Tailwind CSS with dark mode support
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Modules
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Services
+- Create, read, update, delete salon services
+- Track service name, price, duration, description
 
-## Learning Laravel
+### Appointments
+- Book appointments with customer details
+- Select services and schedule date/time
+- Track appointment status (confirmed, completed, cancelled)
+- View related payments
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Payments
+- Record payments for appointments
+- Multiple payment methods: cash, credit_card, debit_card, bank_transfer, e_wallet
+- Track payment status: pending, paid, failed, refunded
+- Transaction ID tracking
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+### Using Docker (Recommended)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+# Build and run
+docker build -t laravel-salon .
+docker run -d -p 8000:10000 \
+  -e DB_CONNECTION=mysql \
+  -e DB_HOST=host.docker.internal \
+  -e DB_PORT=3306 \
+  -e DB_DATABASE=salon \
+  -e DB_USERNAME=root \
+  -e DB_PASSWORD= \
+  laravel-salon
+```
 
-### Premium Partners
+### Manual Installation
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+# Install dependencies
+composer install
+npm install && npm run build
 
-## Contributing
+# Setup database
+cp .env.example .env
+php artisan key:generate
+# Configure database in .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Run migrations and seed sample data
+php artisan migrate
+php artisan db:seed
 
-## Code of Conduct
+# Start dev server
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Sample Data
 
-## Security Vulnerabilities
+The seeders populate:
+- 10 Salon services (manicures, pedicures, gel polish, extensions, etc.)
+- 35 Appointments (various statuses)
+- 20 Payments (various methods and statuses)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Access
+
+- URL: http://localhost:8000
+- Email: test@example.com
+- Password: password
+
+## Tech Stack
+
+- Laravel 12
+- PHP 8.4
+- MySQL
+- Tailwind CSS
+- Alpine.js
+- Vite
+- Docker
+
+## Docker
+
+See [Dockerfile](Dockerfile) for container configuration.
+- Port: 10000
+- Document root: `/var/www/html/public`
+- PHP extensions: pdo, pdo_mysql, pdo_pgsql, zip, mbstring, xml
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT
