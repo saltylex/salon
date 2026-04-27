@@ -1,0 +1,22 @@
+.dockerignore
+# Docker ignore file
+vendor
+node_modules
+.git
+npm-debug.log
+yarn-error.log
+.DS_Store
+.env
+.dockerignore
+Dockerfile
+docker-compose.yml
+.gitignore
+README.md
+*.md
+.sass-cache
+.webpack
+dist
+tmp
+*.log
+.env.*
+!.env.example
